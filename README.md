@@ -7,7 +7,7 @@
 #### 下载资料
 在电脑安装git即可使用下列命令将整个项目克隆到本地电脑
 ```
-git clone https://gitee.com/xiaoshidigitee/Wechat-Data.git
+git clone https://gitee.com/zhiguoxin/Wechat-Data.git
 ```
 ![ ](https://img-blog.csdnimg.cn/20210529192404752.png)
 
