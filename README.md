@@ -1,6 +1,16 @@
 # FreeRTOS
 
 #### 介绍
-这里面是公众号文章中用到的一些资料，一般末尾都放了百度网盘的资料链接。
+这里面是公众号文章中用到的一些资料，一般末尾都放了百度网盘的资料链接。考虑到部分读者没有百度网盘会员下载资料比较慢，特此建立一个gitee仓库，专门存放公众号资料。
 
-![](D:\SystemDefault\Pictures\线下物料素材\搜一搜公众号推广物料图片-png\扫码_搜索联合传播样式-标准色版.png)
+## 下载资料
+
+```
+git clone https://gitee.com/xiaoshidigitee/Wechat-Data.git
+```
+
+
+
+![ ](https://img-blog.csdnimg.cn/20210529192404752.png)
+
+ 
