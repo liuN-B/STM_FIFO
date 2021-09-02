@@ -19,7 +19,7 @@
 #define TASK2_STK_SIZE 		128  			//任务堆栈大小
 #define LIST_STK_SIZE 		128  			//任务堆栈大小
 
-TaskHandle_t StartTask_Handler;				//任务句柄
+TaskHandle_t StartTask_Handler;				//任务句柄 任务控制块的首地址
 TaskHandle_t Task1Task_Handler;				//任务句柄
 TaskHandle_t Task2Task_Handler;				//任务句柄
 TaskHandle_t ListTask_Handler;				//任务句柄

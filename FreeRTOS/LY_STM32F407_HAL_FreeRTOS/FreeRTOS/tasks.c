@@ -737,7 +737,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) PRIVILEGED_FUNCTION;
         /* If the stack grows down then allocate the stack then the TCB so the stack
          * does not grow into the TCB.  Likewise if the stack grows up then allocate
          * the TCB then the stack. */
-        #if ( portSTACK_GROWTH > 0 )
+        #if ( portSTACK_GROWTH > 0 )//堆栈的增长方式
             {
                 /* Allocate space for the TCB.  Where the memory comes from depends on
                  * the implementation of the port malloc function and whether or not static
@@ -1156,7 +1156,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
     {
         TCB_t * pxTCB;
 
-        taskENTER_CRITICAL();
+        taskENTER_CRITICAL();//进入临界区
         {
             /* If null is passed in here then it is the calling task that is
              * being deleted. */
@@ -1224,7 +1224,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
                 prvResetNextTaskUnblockTime();
             }
         }
-        taskEXIT_CRITICAL();
+        taskEXIT_CRITICAL();//退出临界区
 
         /* Force a reschedule if it is the currently running task that has just
          * been deleted. */
@@ -1253,11 +1253,12 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
         TickType_t xTimeToWake;
         BaseType_t xAlreadyYielded, xShouldDelay = pdFALSE;
 
+		/*断言*/
         configASSERT( pxPreviousWakeTime );
         configASSERT( ( xTimeIncrement > 0U ) );
         configASSERT( uxSchedulerSuspended == 0 );
 
-        vTaskSuspendAll();
+        vTaskSuspendAll();//挂起任务调度器
         {
             /* Minor optimisation.  The tick count cannot change in this
              * block. */
@@ -1313,7 +1314,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
                 mtCOVERAGE_TEST_MARKER();
             }
         }
-        xAlreadyYielded = xTaskResumeAll();
+        xAlreadyYielded = xTaskResumeAll();//恢复任务调度器
 
         /* Force a reschedule if xTaskResumeAll has not already done so, we may
          * have put ourselves to sleep. */
@@ -1341,8 +1342,8 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
         /* A delay time of zero just forces a reschedule. */
         if( xTicksToDelay > ( TickType_t ) 0U )
         {
-            configASSERT( uxSchedulerSuspended == 0 );
-            vTaskSuspendAll();
+            configASSERT( uxSchedulerSuspended == 0 );//断言，防止传入参数错误
+            vTaskSuspendAll();//挂起调度器
             {
                 traceTASK_DELAY();
 
@@ -1353,9 +1354,9 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
                  *
                  * This task cannot be in an event list as it is the currently
                  * executing task. */
-                prvAddCurrentTaskToDelayedList( xTicksToDelay, pdFALSE );
+                prvAddCurrentTaskToDelayedList( xTicksToDelay, pdFALSE );//添加任务到延时列表
             }
-            xAlreadyYielded = xTaskResumeAll();
+            xAlreadyYielded = xTaskResumeAll();//恢复调度器进行上下文切换
         }
         else
         {

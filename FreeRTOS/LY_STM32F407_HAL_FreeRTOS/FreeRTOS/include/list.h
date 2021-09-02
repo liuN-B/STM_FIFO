@@ -143,7 +143,7 @@
 struct xLIST;
 
 /*
- * 节点——数据结构体
+ * 节点——结构体
  */
 struct xLIST_ITEM
 {

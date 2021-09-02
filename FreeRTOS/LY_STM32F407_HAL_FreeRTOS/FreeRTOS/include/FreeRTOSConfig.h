@@ -86,7 +86,7 @@
 														vApplicationGetTimerTaskMemory()。通过这两个函数来给空闲任务和定时器服务任务的任务堆
 														栈和任务控制块分配内存，*/
 
-#define configTOTAL_HEAP_SIZE					((size_t)(20*1024))     //系统所有总的堆大小
+#define configTOTAL_HEAP_SIZE					((size_t)(20*1024))//次参数用来定义动态内存分配的长度
 
 
 /***************************************************************************************************************/
@@ -166,10 +166,13 @@
 	#define configPRIO_BITS       		4        /* 15 priority levels */
 #endif
 
-/* 中断最低优先级.而 FreeRTOS 的任务优先级是，任务优先级数值越小，任务优先级越低。*/
+/* 此宏定义是用来配置FreeRTOS用到的Systick中断和PendSV中断优先级。在NVIC分组中设置
+为4的情况下，次宏定义的范围就是0~15，即专门配置抢占优先级。这里配置了为0xf，即Systick
+和PendSV都是配置为了最低优先级，实际项目中也建议大家配置为最低优先级即可。
+任务优先级数值越小，任务优先级越低。*/
 #define configLIBRARY_LOWEST_INTERRUPT_PRIORITY			0xf
 
-/* 系统可管理的最高中断优先级。优先级越高，数值越低。 */
+/* 定义了系统可管理的最高中断优先级为5。优先级越高，数值越低。 */
 #define configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY	5
 
 /* 内核端口层本身使用的中断优先级。这些是所有Cortex-M端口的通用端口，不依赖于任何特定的库函数。 */
