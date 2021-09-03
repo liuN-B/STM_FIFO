@@ -7,8 +7,8 @@ HeaderPath=..\Drivers\STM32F4xx_HAL_Driver\Inc;..\Drivers\STM32F4xx_HAL_Driver\I
 CDefines=USE_HAL_DRIVER;STM32F407xx;USE_HAL_DRIVER;USE_HAL_DRIVER;
 
 [PreviousGenFiles]
-HeaderPath=D:/Desktop/STM32F407ZGT6_CubeMX_FreeRTOS/Inc
+HeaderPath=D:/gitee上面的项目/公众号资料/FreeRTOS/STM32F407ZGT6_CubeMX_FreeRTOS/Inc
 HeaderFiles=gpio.h;FreeRTOSConfig.h;stm32f4xx_it.h;stm32f4xx_hal_conf.h;main.h;
-SourcePath=D:/Desktop/STM32F407ZGT6_CubeMX_FreeRTOS/Src
+SourcePath=D:/gitee上面的项目/公众号资料/FreeRTOS/STM32F407ZGT6_CubeMX_FreeRTOS/Src
 SourceFiles=gpio.c;freertos.c;stm32f4xx_it.c;stm32f4xx_hal_msp.c;stm32f4xx_hal_timebase_tim.c;main.c;
 

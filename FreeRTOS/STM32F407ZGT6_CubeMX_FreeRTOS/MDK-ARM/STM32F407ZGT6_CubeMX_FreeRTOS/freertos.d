@@ -44,3 +44,7 @@ stm32f407zgt6_cubemx_freertos\freertos.o: ../Middlewares/Third_Party/FreeRTOS/So
 stm32f407zgt6_cubemx_freertos\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f407zgt6_cubemx_freertos\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 stm32f407zgt6_cubemx_freertos\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+stm32f407zgt6_cubemx_freertos\freertos.o: ..\RTT\SEGGER_RTT.h
+stm32f407zgt6_cubemx_freertos\freertos.o: ..\RTT\SEGGER_RTT_Conf.h
+stm32f407zgt6_cubemx_freertos\freertos.o: D:\Software\MDK\ARM\ARMCC\Bin\..\include\stdlib.h
+stm32f407zgt6_cubemx_freertos\freertos.o: D:\Software\MDK\ARM\ARMCC\Bin\..\include\stdarg.h

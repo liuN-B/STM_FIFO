@@ -32,6 +32,8 @@
 "stm32f407zgt6_cubemx_freertos\cmsis_os.o"
 "stm32f407zgt6_cubemx_freertos\heap_4.o"
 "stm32f407zgt6_cubemx_freertos\port.o"
+"stm32f407zgt6_cubemx_freertos\segger_rtt.o"
+"stm32f407zgt6_cubemx_freertos\segger_rtt_printf.o"
 --library_type=microlib --strict --scatter "STM32F407ZGT6_CubeMX_FreeRTOS\STM32F407ZGT6_CubeMX_FreeRTOS.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

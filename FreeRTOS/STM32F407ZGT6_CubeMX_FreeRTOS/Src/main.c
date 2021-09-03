@@ -92,19 +92,13 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
-  MX_FREERTOS_Init(); //初始化 freeRtos，前面介绍过这个函数，这个函数的作用就是创建线程（任务）
+  MX_FREERTOS_Init();
   /* Start scheduler */
-  
-  /* 启动 RTOS，其实就是启动“任务管理器”，启动之后任务管理器就开始调度线程，
-	* 此时 pc（程序计数器）就会指向某线程的指令，开始多线程并发运行。
-	* 如果没有创建多线程的话，那就只有一个线程。*/
   osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  /* 由于调用了 osKernelStart 之后，PC 就指向了线程中的指令，因此 osKernelStart 后
-   * 面代码并不会被 CPU 执行，所以 osKernelStart 后的代码没有意义。 */
   while (1)
   {
     /* USER CODE END WHILE */
