@@ -1,2 +1,0 @@
-void StartDefaultTask(void const * argument);
-void StartTask02(void const * argument);#n

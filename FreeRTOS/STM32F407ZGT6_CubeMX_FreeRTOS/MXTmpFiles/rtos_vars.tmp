@@ -1,2 +1,0 @@
-osThreadId defaultTaskHandle;
-osThreadId myTask02Handle;
