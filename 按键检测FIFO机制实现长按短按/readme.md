@@ -339,47 +339,46 @@ void KEY_Scan(void)
 static void KEY_Detect(uint8_t i)
 {
 	KEY_T *pBtn;
-
-	pBtn = &s_tBtn[i];
+	pBtn = &s_tBtn[i];/*读取相应按键的结构体地址，程序里面每个按键都有自己的结构体。*/
 	if (pBtn->IsKeyDownFunc())
-	{//这个里面执行的是按键按下的处理
-		if (pBtn->Count < KEY_FILTER_TIME)
-		{//按键滤波前给 Count 设置一个初值
+	{/*这个里面执行的是按键按下的处理*/
+		if (pBtn->Count < KEY_FILTER_TIME)/*用于按键滤波前给 Count 设置一个初值*/
+		{
 			pBtn->Count = KEY_FILTER_TIME;
 		}
-		else if(pBtn->Count < 2 * KEY_FILTER_TIME)
-		{//实现 KEY_FILTER_TIME 时间长度的延迟
+		else if(pBtn->Count < 2 * KEY_FILTER_TIME)/*这里实现 KEY_FILTER_TIME 时间长度的延迟*/
+		{
 			pBtn->Count++;
 		}
 		else
 		{
 			if (pBtn->State == 0)
 			{
-				pBtn->State = 1;
+				pBtn->State = 1;/*如果按键按下了，这里就将其设置为 1*/
 
 				/* 发送按钮按下的消息 */
 				KEY_FIFO_Put((uint8_t)(3 * i + 1));
 			}
 
-			if (pBtn->LongTime > 0)
+			if (pBtn->LongTime > 0) /*LongTime初始值是100。单位10ms，持续1秒，认为长按事件*/
 			{
-				if (pBtn->LongCount < pBtn->LongTime)
+				if (pBtn->LongCount < pBtn->LongTime) /*LongCount长按计数器。单位10ms，持续1秒，认为长按事件*/
 				{
 					/* 发送按钮持续按下的消息 */
-					if (++pBtn->LongCount == pBtn->LongTime)
+					if (++pBtn->LongCount == pBtn->LongTime)/*LongCount等于LongTime(100),10ms进来一次，进来了100次也就是说按下时间为于1s*/
 					{
 						/* 键值放入按键FIFO */
 						KEY_FIFO_Put((uint8_t)(3 * i + 3));
 					}
 				}
-				else
+				else/*LongCount大于LongTime(100),也就是说按下时间大于1s*/
 				{
-					if (pBtn->RepeatSpeed > 0)
+					if (pBtn->RepeatSpeed > 0)/* RepeatSpeed连续按键周期 */
 					{
 						if (++pBtn->RepeatCount >= pBtn->RepeatSpeed)
 						{
 							pBtn->RepeatCount = 0;
-							/* 长按键后，每隔10ms发送1个按键 */
+							/* 长按键后，每隔10ms发送1个按键。因为长按也是要发送键值得，10ms发送一次。*/
 							KEY_FIFO_Put((uint8_t)(3 * i + 1));
 						}
 					}
@@ -388,7 +387,7 @@ static void KEY_Detect(uint8_t i)
 		}
 	}
 	else
-	{//这个里面执行的是按键松手的处理或者按键没有按下的处理
+	{/*这个里面执行的是按键松手的处理或者按键没有按下的处理*/
 		if(pBtn->Count > KEY_FILTER_TIME)
 		{
 			pBtn->Count = KEY_FILTER_TIME;
@@ -407,6 +406,7 @@ static void KEY_Detect(uint8_t i)
 				KEY_FIFO_Put((uint8_t)(3 * i + 2));
 			}
 		}
+
 		pBtn->LongCount = 0;
 		pBtn->RepeatCount = 0;
 	}
