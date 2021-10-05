@@ -286,7 +286,8 @@ void SysTick_ISR(void)
 static void SoftTimerDec(uint8_t _id)
 {
 	SOFT_TMR * tmr;
-	tmr = &s_tTmr[_id];
+	tmr = &s_tTmr[_id];/* 每个定时器都有自己的结构体，将对应定时器的地址赋值给结构体指针变量tmr 
+	                      才能访问对应定时器的成员变量，因为是结构体指针变量，所以访问要用 —> */
 	if (tmr->Count > 0)
 	{
 		/* 如果定时器变量减到1则设置定时器到达标志 */
