@@ -16,7 +16,7 @@ static SOFT_TMR s_tTmr[TMR_COUNT];
 */
 __IO int32_t g_iRunTime = 0;
 
-static void SoftTimerDec(SOFT_TMR *_tmr);
+static void SoftTimerDec(uint8_t _id);
 
 /*
 *********************************************************************************************************
@@ -237,9 +237,12 @@ int32_t CheckRunTime(int32_t _LastTime)
 *	返 回 值: 无
 *********************************************************************************************************
 */
+extern void RunPer1ms(void);
+extern void RunPer10ms(void);
 void SysTick_ISR(void)
 {
-	uint8_t i;
+	static uint8_t s_count = 0;
+	uint8_t _id;
 	
 	/* 每隔1ms进来1次 （仅用于 bsp_DelayMS） */
 	if (s_uiDelayCount > 0)/* s_uiDelayCount为毫秒延时的时间 */
@@ -251,9 +254,9 @@ void SysTick_ISR(void)
 	}
 
 	/* 每隔1ms，对软件定时器的计数器进行减一操作 */
-	for (i = 0; i < TMR_COUNT; i++)
+	for (_id = 0; _id < TMR_COUNT; _id++)
 	{
-		SoftTimerDec(&s_tTmr[i]);
+		SoftTimerDec(_id);
 	}
 
 	/* 全局运行时间每1ms增1 */
@@ -263,28 +266,38 @@ void SysTick_ISR(void)
 		g_iRunTime = 0;
 	}
 
+	RunPer1ms();		/* 每隔1ms调用一次此函数，此函数在 bsp.c */
+
+	if (++s_count >= 10)
+	{
+		s_count = 0;
+
+		RunPer10ms();	/* 每隔10ms调用一次此函数，此函数在 bsp.c */
+	}
 }
 /*
 *********************************************************************************************************
 *	函 数 名: SoftTimerDec
 *	功能说明: 每隔1ms对所有定时器变量减1。必须被SysTick_ISR周期性调用。
-*	形    参:  _tmr : 定时器变量指针
+*	形    参:  i : 定时器的ID
 *	返 回 值: 无
 *********************************************************************************************************
 */
-static void SoftTimerDec(SOFT_TMR *_tmr)
+static void SoftTimerDec(uint8_t _id)
 {
-	if (_tmr->Count > 0)
+	SOFT_TMR * tmr;
+	tmr = &s_tTmr[_id];
+	if (tmr->Count > 0)
 	{
 		/* 如果定时器变量减到1则设置定时器到达标志 */
-		if (--_tmr->Count == 0)
+		if (--tmr->Count == 0)
 		{
-			_tmr->Flag = 1; /* Flag = 1 在检查定时器时间中会用到 */
+			tmr->Flag = 1; /* Flag = 1 在检查定时器时间中会用到 */
 
 			/* 如果是自动模式，则自动重装计数器 */
-			if(_tmr->Mode == TMR_AUTO_MODE)
+			if(tmr->Mode == TMR_AUTO_MODE)
 			{
-				_tmr->Count = _tmr->PreLoad;
+				tmr->Count = tmr->PreLoad;
 			}
 		}
 	}
@@ -387,3 +400,5 @@ void Delay_ms(uint32_t n)
 		}
 	}
 }
+
+/***************************** 智果芯 www.zhiguoxin.cn (END OF FILE) *********************************/
