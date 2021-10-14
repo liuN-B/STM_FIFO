@@ -1,0 +1,1 @@
+"MultiTimer\multi_timer.c" WARNINGLEVEL (0) OPTIMIZE (8,SPEED) BROWSE INCDIR(.\MultiButton;.\MultiTimer) DEBUG OBJECTEXTEND PRINT(.\multi_timer.lst) OBJECT(multi_timer.obj)

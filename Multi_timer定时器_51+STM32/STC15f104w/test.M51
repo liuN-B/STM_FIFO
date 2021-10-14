@@ -1,0 +1,387 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/14/2021  14:46:39  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\SOFTWARE\MDK\C51\BIN\BL51.EXE STARTUP.obj, test_stc15f104w.obj, multi_timer.obj TO test
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  test_stc15f104w.obj (TEST_STC15F104W)
+  multi_timer.obj (MULTI_TIMER)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C_INIT)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?ILDPTR)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?ILDOPTR)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?ISTPTR)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?ISTOPTR)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PLDPTR)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PSTPTR)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PLDOPTR)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PSTOPTR)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?ICALL)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PLDIDATA)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PSTIDATA)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PLDXDATA)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PSTXDATA)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PLDPDATA)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PSTPDATA)
+  D:\SOFTWARE\MDK\C51\LIB\C51S.LIB (?C?PLDCODE)
+
+
+LINK MAP OF MODULE:  test (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0016H     UNIT         ?DT?TEST_STC15F104W
+            DATA    001EH     000CH     UNIT         _DATA_GROUP_
+            DATA    002AH     0005H     UNIT         ?DT?MULTI_TIMER
+            IDATA   002FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     UNIT         ?PR?TIMER1_CALLBACK?TEST_STC15F104W
+                    0006H     0005H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     01EFH     UNIT         ?C?LIB_CODE
+            CODE    01FDH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0289H     0070H     UNIT         ?PR?_TIMER_STOP?MULTI_TIMER
+            CODE    02F9H     006DH     UNIT         ?PR?_TIMER_START?MULTI_TIMER
+            CODE    0366H     006CH     UNIT         ?PR?TIMER_LOOP?MULTI_TIMER
+            CODE    03D2H     0058H     UNIT         ?PR?MAIN?TEST_STC15F104W
+            CODE    042AH     0043H     UNIT         ?PR?_TIMER_INIT?MULTI_TIMER
+            CODE    046DH     0041H     UNIT         ?PR?TIMER0?TEST_STC15F104W
+            CODE    04AEH     0026H     UNIT         ?PR?TIMER2_CALLBACK?TEST_STC15F104W
+            CODE    04D4H     0010H     UNIT         ?PR?TIMER0_INIT?TEST_STC15F104W
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/14/2021  14:46:39  PAGE 2
+
+
+            CODE    04E4H     000EH     UNIT         ?C_INITSEG
+            CODE    04F2H     0009H     UNIT         ?PR?TIMER_TICKS?MULTI_TIMER
+
+
+
+OVERLAY MAP OF MODULE:   test (?C_STARTUP)
+
+
+SEGMENT                                       DATA_GROUP 
+  +--> CALLED SEGMENT                       START    LENGTH
+-----------------------------------------------------------
+?C_C51STARTUP                               -----    -----
+  +--> ?PR?MAIN?TEST_STC15F104W
+  +--> ?C_INITSEG
+
+?PR?MAIN?TEST_STC15F104W                    -----    -----
+  +--> ?PR?TIMER0_INIT?TEST_STC15F104W
+  +--> ?PR?TIMER1_CALLBACK?TEST_STC15F104W
+  +--> ?PR?_TIMER_INIT?MULTI_TIMER
+  +--> ?PR?TIMER2_CALLBACK?TEST_STC15F104W
+  +--> ?PR?_TIMER_START?MULTI_TIMER
+  +--> ?PR?TIMER_LOOP?MULTI_TIMER
+
+?PR?_TIMER_INIT?MULTI_TIMER                 001EH    000AH
+
+?PR?TIMER2_CALLBACK?TEST_STC15F104W         -----    -----
+  +--> ?PR?_TIMER_STOP?MULTI_TIMER
+
+?PR?_TIMER_STOP?MULTI_TIMER                 0021H    0009H
+
+?PR?_TIMER_START?MULTI_TIMER                001EH    0006H
+
+?PR?TIMER_LOOP?MULTI_TIMER                  001EH    0003H
+  +--> ?PR?_TIMER_STOP?MULTI_TIMER
+
+*** NEW ROOT ***************************************************
+
+?PR?TIMER0?TEST_STC15F104W                  -----    -----
+  +--> ?PR?TIMER_TICKS?MULTI_TIMER
+
+
+
+SYMBOL TABLE OF MODULE:  test (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:01FDH         SEGMENT       ?C_C51STARTUP
+  I:002FH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/14/2021  14:46:39  PAGE 3
+
+
+  N:0080H         SYMBOL        IDATALEN
+  C:0200H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:01FDH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:01FDH         LINE#         133
+  C:01FFH         LINE#         134
+  C:0200H         LINE#         135
+  C:0201H         LINE#         136
+  C:0203H         LINE#         185
+  C:0206H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        TEST_STC15F104W
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:03D2H         PUBLIC        main
+  D:0089H         PUBLIC        TMOD
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  C:046DH         PUBLIC        timer0
+  B:00B0H.3       PUBLIC        LED
+  D:0008H         PUBLIC        timer1
+  D:0012H         PUBLIC        timer2
+  B:0088H.4       PUBLIC        TR0
+  D:001CH         PUBLIC        Counter
+  C:0003H         PUBLIC        timer1_callback
+  C:04AEH         PUBLIC        timer2_callback
+  C:04D4H         PUBLIC        timer0_init
+  -------         PROC          MAIN
+  C:03D2H         LINE#         24
+  C:03D2H         LINE#         25
+  C:03D2H         LINE#         26
+  C:03D4H         LINE#         27
+  C:03D7H         LINE#         28
+  C:03F5H         LINE#         29
+  C:0413H         LINE#         30
+  C:041CH         LINE#         31
+  C:0425H         LINE#         32
+  C:0425H         LINE#         33
+  C:0425H         LINE#         34
+  C:0428H         LINE#         35
+  -------         ENDPROC       MAIN
+  -------         PROC          TIMER1_CALLBACK
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/14/2021  14:46:39  PAGE 4
+
+
+  C:0003H         LINE#         39
+  C:0003H         LINE#         40
+  C:0003H         LINE#         42
+  C:0005H         LINE#         43
+  -------         ENDPROC       TIMER1_CALLBACK
+  -------         PROC          TIMER2_CALLBACK
+  C:04AEH         LINE#         45
+  C:04AEH         LINE#         46
+  C:04AEH         LINE#         50
+  C:04B6H         LINE#         51
+  C:04BCH         LINE#         52
+  C:04BCH         LINE#         53
+  C:04C0H         LINE#         54
+  C:04C2H         LINE#         55
+  C:04CAH         LINE#         56
+  C:04D3H         LINE#         57
+  C:04D3H         LINE#         58
+  -------         ENDPROC       TIMER2_CALLBACK
+  -------         PROC          TIMER0_INIT
+  C:04D4H         LINE#         61
+  C:04D4H         LINE#         62
+  C:04D4H         LINE#         63
+  C:04D7H         LINE#         64
+  C:04DAH         LINE#         65
+  C:04DDH         LINE#         66
+  C:04DFH         LINE#         67
+  C:04E1H         LINE#         68
+  C:04E3H         LINE#         69
+  -------         ENDPROC       TIMER0_INIT
+  -------         PROC          TIMER0
+  C:046DH         LINE#         72
+  C:048AH         LINE#         74
+  C:048DH         LINE#         75
+  C:0490H         LINE#         77
+  C:0493H         LINE#         78
+  -------         ENDPROC       TIMER0
+  -------         ENDMOD        TEST_STC15F104W
+
+  -------         MODULE        MULTI_TIMER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:002AH         SYMBOL        _timer_ticks
+  C:04F2H         PUBLIC        timer_ticks
+  C:02F9H         PUBLIC        _timer_start
+  C:042AH         PUBLIC        _timer_init
+  C:0366H         PUBLIC        timer_loop
+  C:0289H         PUBLIC        _timer_stop
+  D:002CH         SYMBOL        head_handle
+  -------         PROC          _TIMER_INIT
+  D:001EH         SYMBOL        handle
+  D:0021H         SYMBOL        timeout_cb
+  D:0024H         SYMBOL        timeout
+  D:0026H         SYMBOL        repeat
+  C:042AH         LINE#         21
+  C:0430H         LINE#         22
+  C:0430H         LINE#         24
+  C:0448H         LINE#         25
+  C:045CH         LINE#         26
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/14/2021  14:46:39  PAGE 5
+
+
+  -------         ENDPROC       _TIMER_INIT
+  -------         PROC          _TIMER_START
+  D:001EH         SYMBOL        handle
+  -------         DO            
+  D:0021H         SYMBOL        target
+  -------         ENDDO         
+  C:02F9H         LINE#         34
+  C:02FFH         LINE#         35
+  C:02FFH         LINE#         36
+  C:0308H         LINE#         38
+  C:0310H         LINE#         39
+  C:0310H         LINE#         40
+  C:032DH         LINE#         42
+  C:033FH         LINE#         43
+  C:0341H         LINE#         45
+  C:0359H         LINE#         46
+  C:0362H         LINE#         47
+  C:0365H         LINE#         48
+  -------         ENDPROC       _TIMER_START
+  -------         PROC          _TIMER_STOP
+  D:0021H         SYMBOL        handle
+  -------         DO            
+  D:0024H         SYMBOL        curr
+  -------         DO            
+  D:0027H         SYMBOL        entry
+  -------         ENDDO         
+  -------         ENDDO         
+  C:0289H         LINE#         55
+  C:028FH         LINE#         56
+  C:028FH         LINE#         59
+  C:02A6H         LINE#         60
+  C:02A6H         LINE#         61
+  C:02B5H         LINE#         63
+  C:02CAH         LINE#         64
+  C:02CAH         LINE#         65
+  C:02E5H         LINE#         67
+  C:02E7H         LINE#         69
+  C:02F6H         LINE#         70
+  C:02F8H         LINE#         71
+  -------         ENDPROC       _TIMER_STOP
+  -------         PROC          TIMER_LOOP
+  -------         DO            
+  D:001EH         SYMBOL        target
+  -------         ENDDO         
+  C:0366H         LINE#         78
+  C:0366H         LINE#         79
+  C:0366H         LINE#         82
+  C:0377H         LINE#         83
+  C:0377H         LINE#         84
+  C:038BH         LINE#         85
+  C:038BH         LINE#         86
+  C:0397H         LINE#         87
+  C:0397H         LINE#         88
+  C:039AH         LINE#         89
+  C:039CH         LINE#         91
+  C:039CH         LINE#         92
+  C:03AEH         LINE#         93
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/14/2021  14:46:39  PAGE 6
+
+
+  C:03AEH         LINE#         95
+  C:03BDH         LINE#         96
+  C:03BDH         LINE#         97
+  C:03D1H         LINE#         98
+  -------         ENDPROC       TIMER_LOOP
+  -------         PROC          TIMER_TICKS
+  C:04F2H         LINE#         105
+  C:04F2H         LINE#         106
+  C:04F2H         LINE#         107
+  C:04FAH         LINE#         108
+  -------         ENDPROC       TIMER_TICKS
+  -------         ENDMOD        MULTI_TIMER
+
+  -------         MODULE        ?C?ILDPTR
+  C:000EH         PUBLIC        ?C?ILDPTR
+  -------         ENDMOD        ?C?ILDPTR
+
+  -------         MODULE        ?C?ILDOPTR
+  C:0039H         PUBLIC        ?C?ILDOPTR
+  -------         ENDMOD        ?C?ILDOPTR
+
+  -------         MODULE        ?C?ISTPTR
+  C:0071H         PUBLIC        ?C?ISTPTR
+  -------         ENDMOD        ?C?ISTPTR
+
+  -------         MODULE        ?C?ISTOPTR
+  C:0090H         PUBLIC        ?C?ISTOPTR
+  -------         ENDMOD        ?C?ISTOPTR
+
+  -------         MODULE        ?C?PLDPTR
+  C:00BDH         PUBLIC        ?C?PLDPTR
+  -------         ENDMOD        ?C?PLDPTR
+
+  -------         MODULE        ?C?PSTPTR
+  C:00DDH         PUBLIC        ?C?PSTPTR
+  -------         ENDMOD        ?C?PSTPTR
+
+  -------         MODULE        ?C?PLDOPTR
+  C:012CH         PUBLIC        ?C?PLDOPTR
+  -------         ENDMOD        ?C?PLDOPTR
+
+  -------         MODULE        ?C?PSTOPTR
+  C:015CH         PUBLIC        ?C?PSTOPTR
+  -------         ENDMOD        ?C?PSTOPTR
+
+  -------         MODULE        ?C?ICALL
+  C:01B5H         PUBLIC        ?C?ICALL
+  C:01B9H         PUBLIC        ?C?ICALL2
+  -------         ENDMOD        ?C?ICALL
+
+  -------         MODULE        ?C?PLDIDATA
+  C:01BBH         PUBLIC        ?C?PLDIDATA
+  -------         ENDMOD        ?C?PLDIDATA
+
+  -------         MODULE        ?C?PSTIDATA
+  C:01C4H         PUBLIC        ?C?PSTIDATA
+  -------         ENDMOD        ?C?PSTIDATA
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/14/2021  14:46:39  PAGE 7
+
+
+
+  -------         MODULE        ?C?PLDXDATA
+  C:01CDH         PUBLIC        ?C?PLDXDATA
+  -------         ENDMOD        ?C?PLDXDATA
+
+  -------         MODULE        ?C?PSTXDATA
+  C:01D6H         PUBLIC        ?C?PSTXDATA
+  -------         ENDMOD        ?C?PSTXDATA
+
+  -------         MODULE        ?C?PLDPDATA
+  C:01DFH         PUBLIC        ?C?PLDPDATA
+  -------         ENDMOD        ?C?PLDPDATA
+
+  -------         MODULE        ?C?PSTPDATA
+  C:01E8H         PUBLIC        ?C?PSTPDATA
+  -------         ENDMOD        ?C?PSTPDATA
+
+  -------         MODULE        ?C?PLDCODE
+  C:01F1H         PUBLIC        ?C?PLDCODE
+  -------         ENDMOD        ?C?PLDCODE
+
+Program Size: data=48.0 xdata=0 code=1270
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

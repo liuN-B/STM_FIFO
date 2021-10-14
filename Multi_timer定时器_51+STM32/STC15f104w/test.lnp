@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"test_stc15f104w.obj",
+"multi_timer.obj" 
+TO "test" 
